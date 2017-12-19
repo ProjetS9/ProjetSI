@@ -1,9 +1,12 @@
-from Home import Ui_MainWindow
-from PyQt5 import QtWidgets
-from ChooseAmountController import ChooseAmount
-from AboutUsController import AboutUs
-from PyQt5.QtWidgets import QApplication
 import sys
+
+from view.AboutUsController import AboutUs
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication
+
+from view.ChooseAmountController import ChooseAmount
+from view.Home import Ui_MainWindow
+
 
 class Home(QtWidgets.QMainWindow,Ui_MainWindow):
 

@@ -1,6 +1,8 @@
-from HomeController import Home
-from PyQt5.QtWidgets import QApplication
 import sys
+
+from PyQt5.QtWidgets import QApplication
+
+from view.HomeController import Home
 
 
 def main():

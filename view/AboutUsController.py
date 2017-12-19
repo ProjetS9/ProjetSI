@@ -1,5 +1,6 @@
-from AboutUs import Ui_AboutUs
 from PyQt5 import QtWidgets
+
+from view.AboutUs import Ui_AboutUs
 
 
 class AboutUs(QtWidgets.QDialog, Ui_AboutUs):

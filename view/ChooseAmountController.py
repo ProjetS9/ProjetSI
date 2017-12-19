@@ -1,5 +1,6 @@
-from ChooseAmount import Ui_AmountDialog
 from PyQt5 import QtWidgets
+
+from view.ChooseAmount import Ui_AmountDialog
 
 
 class ChooseAmount(QtWidgets.QDialog, Ui_AmountDialog):
