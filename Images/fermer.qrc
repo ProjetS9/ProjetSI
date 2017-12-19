@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/new/src">
+    <file>arreter.png</file>
+    <file>avancer.png</file>
+    <file>pause.png</file>
+    <file>recommencer.png</file>
+    <file>reculer.png</file>
+  </qresource>
+</RCC>

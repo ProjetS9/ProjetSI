@@ -1,0 +1,11 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource>
+    <file alias="Images/arreter.png">Images/arreter.png</file>
+    <file alias="Images/avancer.png">Images/avancer.png</file>
+    <file alias="Images/fermer.png">Images/fermer.png</file>
+    <file alias="Images/pause.png">Images/pause.png</file>
+    <file alias="Images/recommencer.png">Images/recommencer.png</file>
+    <file alias="Images/reculer.png">Images/reculer.png</file>
+</qresource>
+</RCC>
