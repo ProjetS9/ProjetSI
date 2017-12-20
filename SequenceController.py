@@ -51,8 +51,6 @@ class SequenceController:
                 for frame in self.frameList:
                     if frame.idFrame==idFrame:
                         frame.setRectangle(data)
-
-    def showVedio(self):
         maxId = 0
         for frame in self.frameList:
             for data in frame.rectangle:
@@ -103,24 +101,36 @@ class SequenceController:
                         frame.imageMat[top][left][2]=colorList[idObj - 1][2]
                         frame.imageMat[bottom][left][2]=colorList[idObj - 1][2]
                         left=left+1
-                cv2.imshow("Suivi",frame.imageMat)
-                cv2.waitKey(1)
+
+    def showVedio(self, frame):
+        cv2.imshow("Suivi", frame.imageMat)
+        cv2.waitKey(1)
+        # for frame in self.frameList:
+        #     cv2.imshow("Suivi",frame.imageMat)
+        #     cv2.waitKey(1)
 
     def readFrame(self,currentFrameNumber):
-        for frame in frameList:
-            if frame.idFrame==currentFrameNumber:
-                return frame
+        frame = self.frameList[currentFrameNumber-1]
+        return frame
 
     def nextFrame(self,currentFrameNumber):
-        return frameList[currentFrameNumber]
+        return self.frameList[currentFrameNumber]
 
     def previousFrame(self,currentFrameNumber):
-        return frameList[currentFrameNumber-2]
+        return self.frameList[currentFrameNumber-2]
 
 
-frameList = []
-sc = SequenceController(frameList, "G:/View_001","G:/gtS2_L1_12-34_View001.txt")
-sc.openVedio()
-sc.showVedio()
-
-
+# sc = SequenceController([], "G:/View_001","G:/gtS2_L1_12-34_View001.txt")
+# sc.openVedio()
+# currentId = 1
+# frame = sc.readFrame(currentId)
+# sc.showVedio(frame)
+# for i in range(0,800):
+#     if i < 500:
+#         frame = sc.nextFrame(currentId)
+#         currentId += 1
+#         sc.showVedio(frame)
+#     else:
+#         frame = sc.previousFrame(currentId)
+#         currentId -= 1
+#         sc.showVedio(frame)
