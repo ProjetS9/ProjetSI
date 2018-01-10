@@ -1,5 +1,6 @@
 import sys
 import cv2
+import numpy as np
 
 from view.AboutUsController import AboutUs
 from PyQt5 import QtWidgets
@@ -27,6 +28,8 @@ class Home(QtWidgets.QMainWindow,Ui_MainWindow):
         self.pushButtonData.clicked.connect(self.clicked_data_file)
         self.reculer.clicked.connect(self.clicked_reculer)
 
+        self.videoFileName = ""
+        self.dataFileName = ""
 
     def clicked_choose_event(self):
         chooseAmount = ChooseAmount()
@@ -41,15 +44,17 @@ class Home(QtWidgets.QMainWindow,Ui_MainWindow):
         aboutUs.exec()
 
     def clicked_video_file(self):
-        self.videoFileName = QtWidgets.QFileDialog.getOpenFileName(self, 'Select file')
+        self.videoFileName,fileType = QtWidgets.QFileDialog.getOpenFileName(self, 'Select file')
 
     def clicked_data_file(self):
-        self.dataFileName = QtWidgets.QFileDialog.getOpenFileName(self, 'Select file')
+        self.dataFileName,fileType = QtWidgets.QFileDialog.getOpenFileName(self, 'Select file')
 
     def clicked_reculer(self):
-        self.fc = FluxController([],self.videoFileName[0],self.dataFileName[0])
+        print(self.videoFileName)
+        print(self.dataFileName)
+        self.fc = FluxController([],self.videoFileName,self.dataFileName)
         self.fc.openVideo()
-        self.label.resize(150,150)
+        self.label.resize(150,200)
         self.pushButtonData.hide()
         self.pushButtonVideo.hide()
         self.label.setText(" ")
@@ -74,10 +79,11 @@ class Thread(QThread):
 
     def run(self):
         for frame in self.frameList:
+            frame.imageMat = cv2.imdecode(np.fromstring(frame.imageMat, dtype='uint8'), 1)
             frame = cv2.cvtColor(frame.imageMat, cv2.COLOR_BGR2RGB)
             img = QtGui.QImage(frame, frame.shape[1], frame.shape[0], QtGui.QImage.Format_RGB888)
             pix = QtGui.QPixmap.fromImage(img)
-            pix = pix.scaled(150, 150, Qt.KeepAspectRatio)
+            pix = pix.scaled(150, 200, Qt.KeepAspectRatio)
             # self.label.setPixmap(pix)
             self.changePixmap.emit(pix)
             self.msleep(100)
